@@ -26,7 +26,7 @@ export default function About() {
             }}
           >
             <img
-              src="https://res.cloudinary.com/dsvroldwr/image/upload/v1749559497/PAVAN_20250104_085956_0000_qcxh8y.png"
+              src="https://yt3.ggpht.com/ytc/AIdro_mCZUi9xwC0E3fpFhFkHJ82ctJ2jtr_F5uQG11rlF8Kda4=s600-c-k-c0x00ffffff-no-rj-rp-mo"
               alt="Pavan"
               className="w-full h-full object-cover"
               style={{ filter: "brightness(0.9)" }}
