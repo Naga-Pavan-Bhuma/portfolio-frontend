@@ -26,7 +26,7 @@ export default function Footer() {
 
         {/* Contact Info */}
        <div className="flex flex-col items-center text-center px-4">
-  <h2 style={{ color: "#38b6ff" }} className="text-3xl font-bold mb-8">Contact Us</h2>
+  <h2 style={{ color: "#38b6ff" }} className="text-3xl font-bold mb-8">Contact Me!</h2>
   <div className="w-full max-w-2xl">
     <Contact />
   </div>

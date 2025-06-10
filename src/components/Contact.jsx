@@ -94,7 +94,7 @@ export default function Contact() {
           animate={{ opacity: 1 }}
           className="text-green-400 text-center"
         >
-          ✅ Thank you for contacting us!
+          ✅ Thank you for contacting me!
         </motion.p>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
