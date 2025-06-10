@@ -24,14 +24,14 @@ export default function HeroContent() {
   }, [index]);
 
   return (
-    <div className="absolute inset-0 z-10 flex flex-col sm:flex-row items-center justify-between px-8 sm:px-20 pointer-events-none">
+    <div className="relative w-full min-h-screen flex flex-col sm:flex-row items-center justify-center sm:justify-between px-6 sm:px-20 py-10 gap-y-6">
       {/* Left: Text */}
-      <div className="w-full sm:w-[40%] pointer-events-auto text-center sm:text-left">
+      <div className="w-full sm:w-[45%] text-center sm:text-left">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-5xl sm:text-6xl font-bold"
+          className="text-4xl sm:text-6xl font-bold"
         >
           Hey, I’m{" "}
           <AnimatePresence mode="wait">
@@ -56,18 +56,18 @@ export default function HeroContent() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
-          className="text-2xl mt-4"
+          className="text-xl sm:text-2xl mt-4"
         >
           FullStack Developer & UI/UX Designer
         </motion.p>
       </div>
 
       {/* Right: GIF */}
-      <div className="w-full sm:w-[50%] flex justify-center items-center pointer-events-auto mt-8 sm:mt-0">
+<div className="flex justify-center items-center w-full sm:w-auto sm:mr-8 md:mr-16">
         <img
           src={profilePicUrl}
           alt="Pavan GIF"
-          className="max-w-full max-h-[225px] object-contain rounded-lg shadow-lg"
+          className="w-[120px] h-[120px] object-cover rounded-xl shadow-lg"
         />
       </div>
     </div>
