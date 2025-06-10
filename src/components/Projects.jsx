@@ -8,7 +8,7 @@ export default function Projects() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
+    const API_URL = process.env.REACT_APP_API_URL;
     fetch(`${API_URL}/projects`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch projects");

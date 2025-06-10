@@ -23,7 +23,7 @@ export default function Skills() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/skills")
+    fetch(`${process.env.REACT_APP_API_URL}/skills`,)
       .then((res) => res.json())
       .then((data) => {
         // Defensive: if your API returns { skills: [...] }
