@@ -9,6 +9,7 @@ const fadeIn = {
 export default function About() {
   return (
     <motion.section
+    id="about"
       variants={fadeIn}
       initial="hidden"
       whileInView="visible"

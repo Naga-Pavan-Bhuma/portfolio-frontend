@@ -17,11 +17,7 @@ export default function Header() {
 
   useEffect(() => {
     Events.scrollEvent.register("begin", () => setMenuOpen(false));
-    Events.scrollEvent.register("end", () => {});
-    return () => {
-      Events.scrollEvent.remove("begin");
-      Events.scrollEvent.remove("end");
-    };
+    return () => Events.scrollEvent.remove("begin");
   }, []);
 
   useEffect(() => {
@@ -46,8 +42,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/20 shadow-md transition-shadow duration-300 ${
-        scrolled ? "shadow-lg" : "shadow-none"
+      className={`fixed top-0 left-0 right-0 z-50 bg-black backdrop-blur-md transition-shadow duration-300 ${
+        scrolled ? "shadow-lg" : ""
       }`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
@@ -63,12 +59,10 @@ export default function Header() {
               to={id}
               spy={true}
               smooth={true}
-              offset={-80} // height of header
+              offset={-60}
               duration={500}
-              className={`cursor-pointer font-semibold text-white hover:text-blue-400 transition ${
-                active === id
-                  ? "text-blue-400 border-b-2 border-blue-400 pb-1 drop-shadow-[0_0_10px_rgba(59,130,246,0.7)]"
-                  : ""
+              className={`cursor-pointer font-semibold text-white hover:text-blue-400 transition duration-200 ${
+                active === id ? "text-blue-400 border-b-2 border-blue-400 pb-1" : ""
               }`}
             >
               {label}
@@ -76,42 +70,32 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Mobile Hamburger */}
-        <button
-          className="md:hidden focus:outline-none"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle Menu"
-        >
-          {menuOpen ? (
-            <MdClose className="w-8 h-8 text-blue-400" />
-          ) : (
-            <MdMenu className="w-8 h-8 text-blue-400" />
-          )}
-        </button>
+        {/* Mobile menu icon */}
+        <div className="md:hidden text-white text-3xl cursor-pointer z-50" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <MdClose /> : <MdMenu />}
+        </div>
       </div>
 
-      {/* Mobile nav menu */}
+      {/* Mobile menu panel */}
       {menuOpen && (
-        <nav className="md:hidden bg-white/20 backdrop-blur-md shadow-md px-6 py-4 flex flex-col space-y-4">
+        <div className="md:hidden absolute top-16 left-0 w-full bg-black flex flex-col items-center py-6 space-y-6 border-t border-gray-700">
           {sections.map(({ id, label }) => (
             <ScrollLink
               key={id}
               to={id}
               spy={true}
               smooth={true}
-              offset={-80}
+              offset={-60}
               duration={500}
-              className={`cursor-pointer text-white font-semibold hover:text-blue-400 transition ${
-                active === id
-                  ? "text-blue-400 drop-shadow-[0_0_10px_rgba(59,130,246,0.7)]"
-                  : ""
+              className={`cursor-pointer text-white text-lg hover:text-blue-400 transition ${
+                active === id ? "text-blue-400" : ""
               }`}
               onClick={() => setMenuOpen(false)}
             >
               {label}
             </ScrollLink>
           ))}
-        </nav>
+        </div>
       )}
     </header>
   );
