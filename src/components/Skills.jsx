@@ -8,10 +8,7 @@ const container = {
     transition: { staggerChildren: 0.15 },
   },
 };
-const invertIcons = [
-  "Express.js",
-  "UI/UX",
-];
+const invertIcons = ["Express.js", "UI/UX"];
 const item = {
   hidden: { opacity: 0, y: 30 },
   visible: {
@@ -57,26 +54,27 @@ export default function Skills() {
       variants={container}
       className="snap-start min-h-screen bg-black text-white px-6 md:px-20 flex flex-col justify-center items-center"
     >
-      <h2 className="text-4xl font-bold mb-12 text-center">My Skills</h2>
+      <h2 className="text-4xl font-bold mb-12 mt-10 text-center">My Skills</h2>
       <motion.ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 w-full max-w-6xl place-items-center">
         {skills.map((skill, index) => (
           <motion.li
-  key={skill._id || index}
-  variants={item}
-  className="group flex flex-col items-center justify-center 
+            key={skill._id || index}
+            variants={item}
+            className="group flex flex-col items-center justify-center 
              bg-neutral-900 border border-neutral-700 rounded-2xl 
              px-6 py-6 shadow-lg hover:shadow-indigo-500/30 
              transition-all duration-300 hover:scale-105 
              w-36 h-36 sm:w-40 sm:h-40"
->
-
+          >
             <img
-  src={skill.logo}
-  alt={skill.name}
-  className={`w-12 h-12 mb-3 transition-transform duration-300 group-hover:scale-110 ${
-    invertIcons.includes(skill.name) ? "filter brightness-0 invert" : ""
-  }`}
-/>
+              src={skill.logo}
+              alt={skill.name}
+              className={`w-12 h-12 mb-3 transition-transform duration-300 group-hover:scale-110 ${
+                invertIcons.includes(skill.name)
+                  ? "filter brightness-0 invert"
+                  : ""
+              }`}
+            />
             <span className="text-white font-medium text-lg text-center">
               {skill.name}
             </span>

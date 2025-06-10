@@ -57,7 +57,7 @@ export default function Projects() {
 
   return (
     <section className="min-h-screen px-6 md:px-20 py-10 bg-black text-white snap-start" id="projects">
-      <h2 className="text-4xl font-bold mb-10 text-center">My Projects</h2>
+      <h2 className="text-4xl font-bold mb-10 mt-5 text-center">My Projects</h2>
 
       <motion.div
         className="flex flex-wrap justify-center gap-8"

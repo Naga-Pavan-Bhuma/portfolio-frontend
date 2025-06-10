@@ -9,7 +9,7 @@ const fadeIn = {
 export default function About() {
   return (
     <motion.section
-    id="about"
+      id="about"
       variants={fadeIn}
       initial="hidden"
       whileInView="visible"
@@ -23,10 +23,24 @@ export default function About() {
             About Me
           </h2>
           <p className="text-base md:text-lg leading-relaxed max-w-md text-gray-300">
-            I’m a passionate UI/UX designer and front-end developer who loves
-            crafting smooth user experiences with clean, responsive code.
-            Focused on pixel-perfect designs and efficient, maintainable
-            development.
+            Hey you, I’m Naga Pavan Bhuma — the guy who finds joy in building
+            cool stuff on the web. From crafting clean, intuitive UIs to diving
+            deep into full-stack MERN code, I love creating things that just
+            click. All I need is VS Code and a good idea
+          </p>
+          <p className="text-base md:text-lg leading-relaxed max-w-md text-gray-300">
+            I spend hours in Figma making sure every button feels right and
+            every flow makes sense — because great design isn’t just visual,
+            it’s emotional.
+          </p>
+          <p className="text-base md:text-lg leading-relaxed max-w-md text-gray-300">
+            Off-screen? I’m that 4 AM yoga person — finding calm before the
+            world stirs. And when life gets noisy, I turn to chess, reset, and
+            plan my next move... maybe even with you
+          </p>
+          <p className="text-base md:text-lg leading-relaxed max-w-md text-gray-300">
+            Truth is, I’m always building — websites, skills, and myself. Always
+            learning. Always dreaming.
           </p>
         </div>
 
@@ -36,13 +50,13 @@ export default function About() {
             className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500"
             style={{
               borderRadius: "20px / 30px", // elliptical rounding for subtle style
-              height: "75%",  // <-- here you go
+              height: "75%", // <-- here you go
               width: "100%",
               maxHeight: "420px", // optional max height to keep it neat
             }}
           >
             <img
-              src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?auto=format&fit=crop&w=600&q=80"
+              src="https://res.cloudinary.com/dsvroldwr/image/upload/v1749559497/PAVAN_20250104_085956_0000_qcxh8y.png"
               alt="Pavan"
               className="w-full h-full object-cover"
               style={{ filter: "brightness(0.9)" }}

@@ -7,7 +7,7 @@ const sections = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
-  { id: "contact", label: "Contact" },
+  { id: "footer", label: "Contact" },
 ];
 
 export default function Header() {
@@ -47,7 +47,10 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-        <div className="text-blue-400 font-extrabold text-2xl cursor-pointer select-none">
+        <div
+          className="font-extrabold text-2xl cursor-pointer select-none"
+          style={{ color: "#38b6ff" }}
+        >
           Pavan&apos;s Portfolio
         </div>
 
@@ -62,7 +65,9 @@ export default function Header() {
               offset={-60}
               duration={500}
               className={`cursor-pointer font-semibold text-white hover:text-blue-400 transition duration-200 ${
-                active === id ? "text-blue-400 border-b-2 border-blue-400 pb-1" : ""
+                active === id
+                  ? "text-blue-400 border-b-2 border-blue-400 pb-1"
+                  : ""
               }`}
             >
               {label}
@@ -71,7 +76,10 @@ export default function Header() {
         </nav>
 
         {/* Mobile menu icon */}
-        <div className="md:hidden text-white text-3xl cursor-pointer z-50" onClick={() => setMenuOpen(!menuOpen)}>
+        <div
+          className="md:hidden text-white text-3xl cursor-pointer z-50"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
           {menuOpen ? <MdClose /> : <MdMenu />}
         </div>
       </div>

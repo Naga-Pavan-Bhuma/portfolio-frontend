@@ -140,7 +140,8 @@ export default function Contact() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition disabled:opacity-60"
+            style={{ backgroundColor: "#38b6ff" }}
+            className="w-full  hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition disabled:opacity-60"
           >
             {loading ? "Sending..." : "Submit"}
           </button>
