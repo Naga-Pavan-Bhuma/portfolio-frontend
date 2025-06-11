@@ -106,31 +106,37 @@ export default function Header() {
       </div>
 
       {/* Mobile nav */}
-      {menuOpen && (
-        <div className="md:hidden absolute top-16 left-0 w-full bg-blue-200 dark:bg-black flex flex-col items-center py-6 space-y-6 border-t border-gray-200 dark:border-gray-700">
-          {sections.map(({ id, label }) => (
-            <ScrollLink
-              key={id}
-              to={id}
-              spy={true}
-              smooth={true}
-              offset={-60}
-              duration={500}
-              onClick={() => setMenuOpen(false)}
-              className={`cursor-pointer text-lg font-semibold transition ${
-                active === id
-                  ? "text-blue-500 dark:text-blue-400"
-                  : "text-black dark:text-white hover:text-blue-500 dark:hover:text-blue-400"
-              }`}
-            >
-              {label}
-            </ScrollLink>
-          ))}
-          <div className="flex items-center gap-2 text-lg font-semibold cursor-pointer text-black dark:text-white hover:text-blue-500 dark:hover:text-blue-400">
-            <span>Change Theme</span>
-            <ThemeToggle />
-          </div>
-        </div>
+{menuOpen && (
+  <div
+    className="md:hidden absolute top-16 left-0 w-full bg-blue-200 dark:bg-black flex flex-col items-center py-6 space-y-6 border-t border-gray-200 dark:border-gray-700"
+    onClick={(e) => e.stopPropagation()} // prevent bubbling to parent div if needed
+  >
+    {sections.map(({ id, label }) => (
+      <ScrollLink
+        key={id}
+        to={id}
+        spy={true}
+        smooth={true}
+        offset={-60}
+        duration={500}
+        onClick={() => setMenuOpen(false)} // close menu only on link click
+        className={`cursor-pointer text-lg font-semibold transition ${
+          active === id
+            ? "text-blue-500 dark:text-blue-400"
+            : "text-black dark:text-white hover:text-blue-500 dark:hover:text-blue-400"
+        }`}
+      >
+        {label}
+      </ScrollLink>
+    ))}
+    <div
+      className="flex items-center gap-2 text-lg font-semibold cursor-pointer text-black dark:text-white hover:text-blue-500 dark:hover:text-blue-400"
+      onClick={(e) => e.stopPropagation()} // stop click bubbling on theme toggle container
+    >
+      <span>Change Theme</span>
+      <ThemeToggle />
+    </div>
+  </div>
       )}
     </header>
   );
