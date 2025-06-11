@@ -9,8 +9,6 @@ const container = {
   },
 };
 
-const invertIcons = ["Express.js", "UI/UX"];
-
 const item = {
   hidden: { opacity: 0, y: 30 },
   visible: {
@@ -19,6 +17,8 @@ const item = {
     transition: { duration: 0.5, ease: "easeOut" },
   },
 };
+
+const invertIcons = ["Express.js", "UI/UX"];
 
 export default function Skills() {
   const [skills, setSkills] = useState([]);
@@ -41,22 +41,27 @@ export default function Skills() {
   if (loading) {
     return (
       <section className="min-h-screen bg-white dark:bg-black text-black dark:text-white flex items-center justify-center">
-        <p className="text-gray-600 dark:text-gray-400 text-xl">Loading skills...</p>
+        <p className="text-gray-600 dark:text-gray-400 text-xl">
+          Loading skills...
+        </p>
       </section>
     );
   }
 
   return (
-    <motion.section
+    <section
       id="skills"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      variants={container}
-      className="snap-start min-h-screen bg-white dark:bg-black text-black dark:text-white px-6 md:px-20 flex flex-col justify-center items-center"
+      className="snap-start min-h-screen bg-white dark:bg-black text-black dark:text-white px-6 md:px-20 flex flex-col justify-center items-center transition-colors duration-300"
     >
       <h2 className="text-4xl font-bold mb-12 mt-10 text-center">My Skills</h2>
-      <motion.ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 w-full max-w-6xl place-items-center">
+
+      <motion.ul
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 w-full max-w-6xl place-items-center"
+      >
         {skills.map((skill, index) => (
           <motion.li
             key={skill._id || index}
@@ -84,6 +89,6 @@ export default function Skills() {
           </motion.li>
         ))}
       </motion.ul>
-    </motion.section>
+    </section>
   );
 }

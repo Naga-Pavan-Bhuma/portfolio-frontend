@@ -1,10 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaFigma, FaGithub, FaPlayCircle } from "react-icons/fa";
+import { FaFigma, FaGithub, FaPlayCircle, FaLink } from "react-icons/fa";
+
 const badgeVariants = {
   hover: {
     scale: 1.2,
-    backgroundColor: "#6366F1",
+    backgroundColor: "#38b6ff",
     color: "#fff",
     transition: { duration: 0.3 },
   },
@@ -17,24 +18,11 @@ const linkVariants = {
   },
 };
 
-function detectLinkType(url) {
-  if (url.includes("figma.com")) {
-    return (
-      <>
-        <FaFigma className="inline-block mr-1" />
-        Figma
-      </>
-    );
-  }
-  if (url.includes("github.com")) {
-    return (
-      <>
-        <FaGithub className="inline-block mr-1" />
-        GitHub
-      </>
-    );
-  }
-  return "Link";
+// returns icon and label separately for clean rendering
+function getLinkIconAndLabel(url) {
+  if (url.includes("figma.com")) return { icon: <FaFigma />, label: "Figma" };
+  if (url.includes("github.com")) return { icon: <FaGithub />, label: "GitHub" };
+  return { icon: <FaLink />, label: "Link" };
 }
 
 export default function ProjectCard({ project, variants }) {
@@ -46,7 +34,7 @@ export default function ProjectCard({ project, variants }) {
       className="flex flex-col justify-between max-w-sm w-full min-h-[520px] bg-neutral-900 border border-neutral-700 rounded-3xl shadow-md hover:shadow-2xl transition-shadow duration-300 text-white overflow-hidden"
       variants={variants}
     >
-      {/* Top padded image */}
+      {/* Project Image */}
       {imageUrl && (
         <div className="pt-6 px-6">
           <img
@@ -58,10 +46,12 @@ export default function ProjectCard({ project, variants }) {
       )}
 
       <div className="p-6 flex flex-col justify-between flex-grow">
+        {/* Title & Description */}
         <div>
-          <h3 className="text-2xl text-black dark:text-white font-bold mb-2">{title}</h3>
+          <h3 className="text-2xl font-bold mb-2 text-black dark:text-white">{title}</h3>
           <p className="text-gray-400 text-sm mb-4">{description}</p>
 
+          {/* Tech Stack */}
           <div className="flex flex-wrap gap-2 mb-6">
             {techStack.map((tech, idx) => (
               <motion.span
@@ -77,31 +67,35 @@ export default function ProjectCard({ project, variants }) {
           </div>
         </div>
 
+        {/* Links */}
         <div className="flex justify-between items-center mt-auto pt-4 border-t border-neutral-700">
-          {githubLink && (
-            <motion.a
-              href={githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium hover:underline"
-              variants={linkVariants}
-              whileHover="hover"
-              style={{ color: "#38b6ff" }}
-            >
-              {detectLinkType(githubLink)} →
-            </motion.a>
-          )}
+          {githubLink && (() => {
+            const { icon, label } = getLinkIconAndLabel(githubLink);
+            return (
+              <motion.a
+                href={githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium flex items-center gap-1 hover:underline"
+                variants={linkVariants}
+                whileHover="hover"
+                style={{ color: "#38b6ff" }}
+              >
+                {icon} {label} →
+              </motion.a>
+            );
+          })()}
 
           {liveDemo && (
             <motion.a
               href={liveDemo}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-green-400 hover:underline"
+              className="text-sm font-medium flex items-center gap-1 text-green-400 hover:underline"
               variants={linkVariants}
               whileHover="hover"
             >
-              Live Preview<FaPlayCircle className="inline-block ml-1" />→
+              <FaPlayCircle /> Live Preview →
             </motion.a>
           )}
         </div>
