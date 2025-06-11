@@ -8,8 +8,9 @@ const sections = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
-  { id: "footer", label: "Contact" },
   { id: "education", label: "Education" },
+
+  { id: "footer", label: "Contact" },
 ];
 
 export default function Header() {
@@ -125,9 +126,10 @@ export default function Header() {
               {label}
             </ScrollLink>
           ))}
-
-          {/* 🌙 Theme Toggle */}
-          <ThemeToggle />
+          <div className="flex items-center gap-2 text-lg font-semibold cursor-pointer text-black dark:text-white hover:text-blue-500 dark:hover:text-blue-400">
+            <span>Change Theme</span>
+            <ThemeToggle />
+          </div>
         </div>
       )}
     </header>

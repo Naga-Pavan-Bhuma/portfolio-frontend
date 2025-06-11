@@ -2,36 +2,27 @@ import React, { useEffect, useState } from "react";
 import { FaSun, FaMoon } from "react-icons/fa";
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(null); // initially null to avoid icon flash
+  const [isDark, setIsDark] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return savedTheme === "dark" || (!savedTheme && prefersDark) || !savedTheme;
+  });
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-    const isDarkMode =
-      savedTheme === "dark" ||
-      (!savedTheme && systemPrefersDark);
-
-    document.documentElement.classList.toggle("dark", isDarkMode);
-    setIsDark(isDarkMode);
-  }, []);
+    document.documentElement.classList.toggle("dark", isDark);
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  }, [isDark]);
 
   const toggleTheme = () => {
-    const newTheme = !isDark;
-    document.documentElement.classList.toggle("dark", newTheme);
-    localStorage.setItem("theme", newTheme ? "dark" : "light");
-    setIsDark(newTheme);
+    setIsDark((prev) => !prev);
   };
-
-  // Avoid rendering until theme is known
-  if (isDark === null) return null;
 
   return (
     <button
       onClick={toggleTheme}
       aria-label="Toggle Theme"
       className={`relative flex items-center w-12 h-6 rounded-full px-0.5 transition-colors duration-500
-        ${isDark ? "bg-blue-500"  : "bg-yellow-400"}
+        ${isDark ? "bg-blue-500" : "bg-yellow-400"}
         focus:outline-none shadow-inner`}
     >
       <div
