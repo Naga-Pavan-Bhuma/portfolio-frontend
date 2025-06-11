@@ -6,6 +6,7 @@ import Projects from "./components/Projects";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { useEffect } from "react";
+import Education from "./components/Education";
 export default function App() {
   useEffect(() => {
     document.documentElement.classList.add("dark");
@@ -18,6 +19,7 @@ export default function App() {
   <About />
   <Skills />
   <Projects />
+  <Education />
   <Footer />
 </main>
 

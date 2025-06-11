@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaSun, FaMoon } from "react-icons/fa";
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(null); // initially null to avoid icon flash
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -10,18 +10,21 @@ export default function ThemeToggle() {
 
     const isDarkMode =
       savedTheme === "dark" ||
-      (!savedTheme && (document.documentElement.classList.contains("dark") || systemPrefersDark));
+      (!savedTheme && systemPrefersDark);
 
-    setIsDark(isDarkMode);
     document.documentElement.classList.toggle("dark", isDarkMode);
+    setIsDark(isDarkMode);
   }, []);
 
   const toggleTheme = () => {
     const newTheme = !isDark;
-    setIsDark(newTheme);
     document.documentElement.classList.toggle("dark", newTheme);
     localStorage.setItem("theme", newTheme ? "dark" : "light");
+    setIsDark(newTheme);
   };
+
+  // Avoid rendering until theme is known
+  if (isDark === null) return null;
 
   return (
     <button
@@ -37,9 +40,9 @@ export default function ThemeToggle() {
           ${isDark ? "translate-x-6" : "translate-x-0"}`}
       >
         {isDark ? (
-          <FaMoon className="text-[10px] transition-all duration-300" style={{ color: "#38b6ff"}} />
+          <FaMoon className="text-[10px]" style={{ color: "#38b6ff" }} />
         ) : (
-          <FaSun className="text-[10px] text-yellow-500 transition-all duration-300" />
+          <FaSun className="text-[10px] text-yellow-500" />
         )}
       </div>
     </button>
