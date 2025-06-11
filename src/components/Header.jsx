@@ -9,6 +9,7 @@ const sections = [
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "footer", label: "Contact" },
+  { id: "education", label: "Education" },
 ];
 
 export default function Header() {

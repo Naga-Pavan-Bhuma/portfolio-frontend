@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-// Sample data—replace logos and details with your own
 const educations = [
   {
     id: 1,
