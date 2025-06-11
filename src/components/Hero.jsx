@@ -17,7 +17,7 @@ export default function Hero() {
   return (
     <section
   id="hero"
-  className="w-full h-screen relative bg-white text-black dark:bg-black dark:text-white overflow-hidden transition-colors duration-300"
+  className="w-full h-screen relative bg-blue-100 text-black dark:bg-black dark:text-white overflow-hidden transition-colors duration-300"
   onMouseMove={handleMouseMove}
 >
 

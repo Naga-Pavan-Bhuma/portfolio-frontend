@@ -11,7 +11,7 @@ import {
 export default function Footer() {
   return (
     <section id="footer" className="relative">
-<footer className="bg-gray-100 dark:bg-gray-800 py-16 px-8">
+<footer className="bg-blue-200 dark:bg-gray-800 py-16 px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-300 dark:border-gray-700 pb-12">
 
           {/* About Section */}

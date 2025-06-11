@@ -18,7 +18,7 @@ const item = {
   },
 };
 
-const invertIcons = ["Express.js", "UI/UX"];
+const invertIcons = ["Express.js"];
 
 export default function Skills() {
   const [skills, setSkills] = useState([]);
@@ -40,7 +40,7 @@ export default function Skills() {
 
   if (loading) {
     return (
-      <section className="min-h-screen bg-white dark:bg-black text-black dark:text-white flex items-center justify-center">
+      <section className="min-h-screen bg-blue-100 dark:bg-black text-black dark:text-white flex items-center justify-center">
         <p className="text-gray-600 dark:text-gray-400 text-xl">
           Loading skills...
         </p>
@@ -51,7 +51,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="snap-start min-h-screen bg-white dark:bg-black text-black dark:text-white px-6 md:px-20 flex flex-col justify-center items-center transition-colors duration-300"
+      className="snap-start min-h-screen bg-blue-100 dark:bg-black text-black dark:text-white px-6 md:px-20 flex flex-col justify-center items-center transition-colors duration-300"
     >
       <h2 className="text-4xl font-bold mb-12 mt-10 text-center">My Skills</h2>
 
@@ -64,16 +64,20 @@ export default function Skills() {
       >
         {skills.map((skill, index) => (
           <motion.li
-            key={skill._id || index}
-            variants={item}
-            className="group flex flex-col items-center justify-center 
-              bg-neutral-100 dark:bg-neutral-900 
-              border border-neutral-300 dark:border-neutral-700 
-              rounded-2xl px-6 py-6 shadow-md dark:shadow-lg 
-              hover:shadow-indigo-300 dark:hover:shadow-indigo-500/30 
-              transition-all duration-300 hover:scale-105 
-              w-36 h-36 sm:w-40 sm:h-40"
-          >
+  key={skill._id || index}
+  variants={item}
+  className="
+    group flex flex-col items-center justify-center 
+    bg-blue-50
+    border border-gray-300 
+    rounded-2xl px-6 py-6 
+    shadow-sm hover:shadow-md 
+    transition-all duration-300 hover:scale-105 
+    w-36 h-36 sm:w-40 sm:h-40
+    dark:bg-black dark:border-neutral-700 dark:shadow-lg dark:hover:shadow-indigo-500/30
+  "
+>
+
             <img
               src={skill.logo}
               alt={skill.name}

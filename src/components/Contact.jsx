@@ -94,7 +94,7 @@ export default function Contact() {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="max-w-md mx-auto p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-lg dark:shadow-indigo-900/50"
+      className="max-w-md mx-auto p-6 bg-blue-100 dark:bg-gray-900 rounded-2xl shadow-lg dark:shadow-blue-900/50"
     >
       {submitted ? (
         <motion.p
@@ -122,7 +122,7 @@ export default function Contact() {
                   onChange={handleChange}
                   onFocus={() => handleFocus("message")}
                   onBlur={() => handleBlur("message")}
-                  className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-400 dark:border-gray-700 rounded-lg outline-none transition-all placeholder-gray-500"
+                  className="w-full px-4 py-2 bg-blue-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-400 dark:border-gray-700 rounded-lg outline-none transition-all placeholder-gray-500"
                 />
               ) : (
                 <input
@@ -137,7 +137,7 @@ export default function Contact() {
                   onChange={handleChange}
                   onFocus={() => handleFocus(field)}
                   onBlur={() => handleBlur(field)}
-                  className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-400 dark:border-gray-700 rounded-lg outline-none transition-all placeholder-gray-500"
+                  className="w-full px-4 py-2 bg-blue-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-400 dark:border-gray-700 rounded-lg outline-none transition-all placeholder-gray-500"
                 />
               )}
               {errors[field] && (

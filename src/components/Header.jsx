@@ -47,7 +47,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-shadow duration-300 ${
         scrolled ? "shadow-lg" : ""
-      } bg-white dark:bg-black`}
+      } bg-blue-100 dark:bg-black`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
         {/* Logo */}
@@ -107,7 +107,7 @@ export default function Header() {
 
       {/* Mobile nav */}
       {menuOpen && (
-        <div className="md:hidden absolute top-16 left-0 w-full bg-white dark:bg-black flex flex-col items-center py-6 space-y-6 border-t border-gray-200 dark:border-gray-700">
+        <div className="md:hidden absolute top-16 left-0 w-full bg-blue-200 dark:bg-black flex flex-col items-center py-6 space-y-6 border-t border-gray-200 dark:border-gray-700">
           {sections.map(({ id, label }) => (
             <ScrollLink
               key={id}

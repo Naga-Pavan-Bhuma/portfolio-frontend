@@ -23,7 +23,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="snap-start min-h-screen flex items-center bg-white text-black dark:bg-black dark:text-white transition-colors duration-300 px-6 md:px-20"
+      className="snap-start min-h-screen flex items-center bg-blue-100 text-black dark:bg-black dark:text-white transition-colors duration-300 px-6 md:px-20"
     >
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Left side - Image */}

@@ -30,7 +30,7 @@ const educations = [
 
 export default function Education() {
   return (
-    <section id="education" className="py-16 bg-white dark:bg-black transition-colors duration-300">
+    <section id="education" className="py-16 bg-blue-100 dark:bg-black transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-12 text-black dark:text-white">
           Education
@@ -39,7 +39,7 @@ export default function Education() {
           {educations.map((edu) => (
             <motion.div
               key={edu.id}
-              className="flex flex-col md:flex-row items-center bg-gray-100 dark:bg-gray-800 rounded-2xl p-6 shadow-lg dark:shadow-xl transition"
+              className="flex flex-col md:flex-row items-center bg-blue-50 dark:bg-gray-800 rounded-2xl p-6 shadow-lg dark:shadow-xl transition"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

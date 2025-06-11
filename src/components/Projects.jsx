@@ -81,7 +81,7 @@ export default function Projects() {
         </motion.p>
         <button
           onClick={fetchProjects}
-          className="px-5 py-2 rounded bg-indigo-600 hover:bg-indigo-700 text-white transition"
+          className="px-5 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white transition"
         >
           Retry
         </button>
@@ -92,7 +92,7 @@ export default function Projects() {
     <main
       id="projects"
       className="min-h-screen px-6 md:px-20 py-10 snap-start
-             bg-white text-gray-900
+             bg-blue-100 text-gray-900
              dark:bg-black dark:text-white"
     >
       <h2 className="text-4xl font-bold mb-10 mt-5 text-center">My Projects</h2>

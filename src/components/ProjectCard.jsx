@@ -31,7 +31,7 @@ export default function ProjectCard({ project, variants }) {
   return (
     <motion.div
       key={_id}
-      className="flex flex-col justify-between max-w-sm w-full min-h-[520px] bg-neutral-900 border border-neutral-700 rounded-3xl shadow-md hover:shadow-2xl transition-shadow duration-300 text-white overflow-hidden"
+      className="flex flex-col justify-between max-w-sm w-full min-h-[520px] bg-blue-50 dark:bg-black border border-neutral-700 rounded-3xl shadow-md hover:shadow-2xl transition-shadow duration-300 text-white overflow-hidden"
       variants={variants}
     >
       {/* Project Image */}
