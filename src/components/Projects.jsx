@@ -7,22 +7,25 @@ export default function Projects() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  async function fetchProjects() {
+    setLoading(true);
+    setError(null);
+    try {
+      const API_URL = process.env.REACT_APP_API_URL;
+      const res = await fetch(`${API_URL}/projects`);
+      if (!res.ok) throw new Error("Failed to fetch projects");
+      const data = await res.json();
+      if (!Array.isArray(data)) throw new Error("API response is not an array");
+      setProjects(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   useEffect(() => {
-    const API_URL = process.env.REACT_APP_API_URL;
-    fetch(`${API_URL}/projects`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch projects");
-        return res.json();
-      })
-      .then((data) => {
-        if (!Array.isArray(data)) throw new Error("API response is not an array");
-        setProjects(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
+    fetchProjects();
   }, []);
 
   const containerVariants = {
@@ -48,19 +51,54 @@ export default function Projects() {
   };
 
   if (loading)
-    return <p className="text-center mt-12 text-gray-400">Loading projects...</p>;
+    return (
+      <main
+        aria-live="polite"
+        className="min-h-screen flex items-center justify-center bg-black text-white"
+      >
+        <motion.p
+          className="text-gray-400 text-lg"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          Loading projects...
+        </motion.p>
+      </main>
+    );
 
   if (error)
     return (
-      <p className="text-center mt-12 text-red-400">Error: {error}</p>
+      <main
+        aria-live="assertive"
+        className="min-h-screen flex flex-col items-center justify-center bg-black text-red-400 p-6"
+      >
+        <motion.p
+          className="text-lg mb-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          Error: {error}
+        </motion.p>
+        <button
+          onClick={fetchProjects}
+          className="px-5 py-2 rounded bg-indigo-600 hover:bg-indigo-700 text-white transition"
+        >
+          Retry
+        </button>
+      </main>
     );
 
   return (
-    <section className="min-h-screen px-6 md:px-20 py-10 bg-black text-white snap-start" id="projects">
+    <main
+      id="projects"
+      className="min-h-screen px-6 md:px-20 py-10 snap-start
+             bg-white text-gray-900
+             dark:bg-black dark:text-white"
+    >
       <h2 className="text-4xl font-bold mb-10 mt-5 text-center">My Projects</h2>
 
       <motion.div
-        className="flex flex-wrap justify-center gap-8"
+        className="flex flex-wrap justify-center gap-6 sm:gap-8"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -69,6 +107,6 @@ export default function Projects() {
           <ProjectCard key={proj._id} project={proj} variants={cardVariants} />
         ))}
       </motion.div>
-    </section>
+    </main>
   );
 }

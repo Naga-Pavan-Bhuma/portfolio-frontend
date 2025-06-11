@@ -16,10 +16,11 @@ export default function Hero() {
 
   return (
     <section
-    id="hero"
-      className="w-full h-screen relative bg-black text-white overflow-hidden"
-      onMouseMove={handleMouseMove}
-    >
+  id="hero"
+  className="w-full h-screen relative bg-white text-black dark:bg-black dark:text-white overflow-hidden transition-colors duration-300"
+  onMouseMove={handleMouseMove}
+>
+
       {/* Canvas 3D background */}
       <div className="absolute inset-0 pointer-events-none">
         <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>

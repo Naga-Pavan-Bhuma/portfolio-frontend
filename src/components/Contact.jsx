@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const inputVariants = {
-  focused: { borderColor: "#6366F1", boxShadow: "0 0 8px #8b5cf6" }, // purple glow
-  blurred: { borderColor: "#4b5563", boxShadow: "none" }, // darker border
+  focused: {
+    borderColor: "#6366F1",
+    boxShadow: "0 0 8px #8b5cf6",
+    transition: { duration: 0.3 },
+  },
+  blurred: {
+    borderColor: "#4b5563",
+    boxShadow: "none",
+    transition: { duration: 0.3 },
+  },
 };
 
 export default function Contact() {
@@ -86,23 +94,24 @@ export default function Contact() {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="max-w-md mx-auto p-6 bg-gray-900 rounded-2xl shadow-lg shadow-indigo-900/50"
+      className="max-w-md mx-auto p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-lg dark:shadow-indigo-900/50"
     >
       {submitted ? (
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-green-400 text-center"
+          className="text-green-600 dark:text-green-400 text-center"
         >
           ✅ Thank you for contacting me!
         </motion.p>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-5">
           {["name", "email", "mobileNumber", "message"].map((field) => (
             <motion.div
               key={field}
               animate={focused[field] ? "focused" : "blurred"}
               variants={inputVariants}
+              className="rounded-lg"
             >
               {field === "message" ? (
                 <textarea
@@ -113,7 +122,7 @@ export default function Contact() {
                   onChange={handleChange}
                   onFocus={() => handleFocus("message")}
                   onBlur={() => handleBlur("message")}
-                  className="w-full px-4 py-2 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg outline-none transition-all placeholder-gray-500"
+                  className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-400 dark:border-gray-700 rounded-lg outline-none transition-all placeholder-gray-500"
                 />
               ) : (
                 <input
@@ -128,11 +137,11 @@ export default function Contact() {
                   onChange={handleChange}
                   onFocus={() => handleFocus(field)}
                   onBlur={() => handleBlur(field)}
-                  className="w-full px-4 py-2 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg outline-none transition-all placeholder-gray-500"
+                  className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-400 dark:border-gray-700 rounded-lg outline-none transition-all placeholder-gray-500"
                 />
               )}
               {errors[field] && (
-                <p className="text-red-500 text-sm mt-1">{errors[field]}</p>
+                <p className="text-red-600 text-sm mt-1">{errors[field]}</p>
               )}
             </motion.div>
           ))}
@@ -140,8 +149,8 @@ export default function Contact() {
           <button
             type="submit"
             disabled={loading}
-            style={{ backgroundColor: "#38b6ff" }}
-            className="w-full  hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition disabled:opacity-60"
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition disabled:opacity-60"
+            aria-busy={loading}
           >
             {loading ? "Sending..." : "Submit"}
           </button>

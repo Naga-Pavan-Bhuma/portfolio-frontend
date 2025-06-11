@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const profilePicUrl = "hero.gif";
-
 const names = [
   { label: "Pavan", color: "#38b6ff" },
   { label: "పవన్", color: "#10B981" },
   { label: "पवन", color: "#F59E0B" },
-  { label: "पवन्", color: "#EC4899" },
   { label: "Pavan", color: "#38b6ff" },
 ];
 
 export default function HeroContent() {
   const [index, setIndex] = useState(0);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     if (index < names.length - 1) {
@@ -23,15 +21,35 @@ export default function HeroContent() {
     }
   }, [index]);
 
+  useEffect(() => {
+    // ✅ Check the actual <html> class to get the theme
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      setIsDarkMode(isDark);
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    // Initial state
+    setIsDarkMode(document.documentElement.classList.contains("dark"));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const gifUrl = isDarkMode ? "dark-hero.gif" : "light-hero.gif";
+
   return (
-    <div className="relative w-full min-h-screen flex flex-col sm:flex-row items-center justify-center sm:justify-between px-6 sm:px-20 py-10 gap-y-6">
+    <div className="relative w-full min-h-screen flex flex-col sm:flex-row items-center justify-center sm:justify-between px-6 sm:px-20 py-10 gap-y-6 transition-colors duration-300">
       {/* Left: Text */}
       <div className="w-full sm:w-[45%] text-center sm:text-left">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="text-4xl sm:text-6xl font-bold"
+          className="text-4xl sm:text-6xl font-bold text-black dark:text-white"
         >
           Hey, I’m{" "}
           <AnimatePresence mode="wait">
@@ -56,18 +74,18 @@ export default function HeroContent() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
-          className="text-xl sm:text-2xl mt-4"
+          className="text-xl sm:text-2xl mt-4 text-gray-700 dark:text-gray-300"
         >
           FullStack Developer & UI/UX Designer
         </motion.p>
       </div>
 
       {/* Right: GIF */}
-<div className="flex justify-center items-center w-full sm:w-auto sm:mr-8 md:mr-16">
+      <div className="flex justify-center items-center w-full sm:w-auto sm:mr-8 md:mr-16">
         <img
-          src={profilePicUrl}
+          src={gifUrl}
           alt="Pavan GIF"
-          className="w-[120px] h-[120px] object-cover rounded-xl shadow-lg"
+          className="w-[120px] h-[120px] object-contain"
         />
       </div>
     </div>

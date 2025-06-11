@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link as ScrollLink, Events } from "react-scroll";
 import { MdMenu, MdClose } from "react-icons/md";
+import ThemeToggle from "./ThemeToggle"; // assumes it sets `document.documentElement.classList`
 
 const sections = [
   { id: "hero", label: "Home" },
@@ -42,20 +43,33 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-black backdrop-blur-md transition-shadow duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-shadow duration-300 ${
         scrolled ? "shadow-lg" : ""
-      }`}
+      } bg-white dark:bg-black`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+        {/* Logo */}
         <div
           className="font-extrabold text-2xl cursor-pointer select-none"
           style={{ color: "#38b6ff" }}
+          tabIndex={0}
+          aria-label="Pavan's Portfolio - Home"
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            setActive("hero");
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              setActive("hero");
+            }
+          }}
         >
           Pavan&apos;s Portfolio
         </div>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex space-x-10">
+        <nav className="hidden md:flex items-center space-x-6">
           {sections.map(({ id, label }) => (
             <ScrollLink
               key={id}
@@ -64,29 +78,34 @@ export default function Header() {
               smooth={true}
               offset={-60}
               duration={500}
-              className={`cursor-pointer font-semibold text-white hover:text-blue-400 transition duration-200 ${
+              className={`cursor-pointer font-semibold transition duration-200 ${
                 active === id
-                  ? "text-blue-400 border-b-2 border-blue-400 pb-1"
-                  : ""
+                  ? "text-blue-500 dark:text-blue-400 border-b-2 border-blue-500 pb-1"
+                  : "text-black dark:text-white hover:text-blue-400 dark:hover:text-blue-400"
               }`}
             >
               {label}
             </ScrollLink>
           ))}
+
+          {/* 🌙 Theme Toggle */}
+          <ThemeToggle />
         </nav>
 
-        {/* Mobile menu icon */}
-        <div
-          className="md:hidden text-white text-3xl cursor-pointer z-50"
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden text-black dark:text-white text-3xl cursor-pointer z-50 focus:outline-none"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <MdClose /> : <MdMenu />}
-        </div>
+        </button>
       </div>
 
-      {/* Mobile menu panel */}
+      {/* Mobile nav */}
       {menuOpen && (
-        <div className="md:hidden absolute top-16 left-0 w-full bg-black flex flex-col items-center py-6 space-y-6 border-t border-gray-700">
+        <div className="md:hidden absolute top-16 left-0 w-full bg-white dark:bg-black flex flex-col items-center py-6 space-y-6 border-t border-gray-200 dark:border-gray-700">
           {sections.map(({ id, label }) => (
             <ScrollLink
               key={id}
@@ -95,14 +114,19 @@ export default function Header() {
               smooth={true}
               offset={-60}
               duration={500}
-              className={`cursor-pointer text-white text-lg hover:text-blue-400 transition ${
-                active === id ? "text-blue-400" : ""
-              }`}
               onClick={() => setMenuOpen(false)}
+              className={`cursor-pointer text-lg font-semibold transition ${
+                active === id
+                  ? "text-blue-500 dark:text-blue-400"
+                  : "text-black dark:text-white hover:text-blue-500 dark:hover:text-blue-400"
+              }`}
             >
               {label}
             </ScrollLink>
           ))}
+
+          {/* 🌙 Theme Toggle */}
+          <ThemeToggle />
         </div>
       )}
     </header>
