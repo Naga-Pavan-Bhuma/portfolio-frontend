@@ -2,30 +2,74 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 
+// ✅ Embedded local data
+const localProjects = [
+  {
+    _id: "6845b0f9233e52126b94a437",
+    title: "Campus Pulse",
+    description:
+      "Campus Pulse is a smart university management system that centralizes student services like mess menus, faculty data, event tracking, and announcements — all in one sleek and responsive platform",
+    techStack: ["React", "Node.js", "MongoDB", "Express", "Tailwind"],
+    githubLink: "https://github.com/Naga-Pavan-Bhuma/Campus_Pulse_Frontend",
+    liveDemo: "https://campus-pulse-frontend.vercel.app/",
+    imageUrl:
+      "https://res.cloudinary.com/dsvroldwr/image/upload/v1749461196/Campus%20Pulse%20View.png",
+    createdAt: "2025-06-08T15:49:13.699+00:00",
+  },
+  {
+    _id: "6847e6c49e9070f25a379780",
+    title: "Resumify",
+    description:
+      "A smart resume analyzer that helps optimize your CV for job applications by offering ATS-friendly feedback and tips.",
+    techStack: ["Figma", "UI Design"],
+    githubLink:
+      "https://www.figma.com/design/3OUnIkdNcMMYx4z8UiBg0I/Resume-Analyzer?node-id=0%3A1",
+    liveDemo:
+      "https://www.figma.com/proto/3OUnIkdNcMMYx4z8UiBg0I/Resume-Analyzer?node-id=0%3A1",
+    imageUrl:
+      "https://res.cloudinary.com/dsvroldwr/image/upload/v1749547206/Resumify.png",
+    createdAt: "2025-06-10T08:03:16.421+00:00",
+  },
+  {
+    _id: "6847e97c9e9070f25a379784",
+    title: "Hasini Enterprises",
+    description:
+      "An intuitive e-commerce platform UI designed to streamline product browsing and purchasing for rural wholesale customers.",
+    techStack: ["Figma", "UI Design"],
+    githubLink:
+      "https://www.figma.com/design/CDi2BW5pELrTEfF84s3NJu/Hasini-Enterprises",
+    liveDemo:
+      "https://www.figma.com/proto/CDi2BW5pELrTEfF84s3NJu/Hasini-Enterprises?node-id=0%3A1",
+    imageUrl:
+      "https://res.cloudinary.com/dsvroldwr/image/upload/v1749546681/Hasini%20Enterprises.png",
+    createdAt: "2025-06-10T08:14:52.324+00:00",
+  },
+  {
+    _id: "6848044fd41d160a0357c787",
+    title: "Abhiyanth RKV",
+    description:
+      "A vibrant techno-management and cultural fest experience, designed to enhance branding, schedule visibility, and participant interaction.",
+    techStack: ["Figma", "UI Design"],
+    githubLink:
+      "https://www.figma.com/design/45LG1RnKR5iJyZJSk2irYV/Abhiyanth-2K25--Concept",
+    liveDemo: "https://abhiyanthrkv.in/",
+    imageUrl:
+      "https://res.cloudinary.com/dsvroldwr/image/upload/v1749549964/Abhiyanth.png",
+    createdAt: "2025-06-10T10:09:19.013+00:00",
+  },
+];
+
 export default function Projects() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  async function fetchProjects() {
-    setLoading(true);
-    setError(null);
-    try {
-      const API_URL = process.env.REACT_APP_API_URL;
-      const res = await fetch(`${API_URL}/projects`);
-      if (!res.ok) throw new Error("Failed to fetch projects");
-      const data = await res.json();
-      if (!Array.isArray(data)) throw new Error("API response is not an array");
-      setProjects(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  }
-
+  // ✅ Simulate loading delay (optional)
   useEffect(() => {
-    fetchProjects();
+    const timer = setTimeout(() => {
+      setProjects(localProjects);
+      setLoading(false);
+    }, 300); // feel free to remove or change delay
+    return () => clearTimeout(timer);
   }, []);
 
   const containerVariants = {
@@ -63,28 +107,6 @@ export default function Projects() {
         >
           Loading projects...
         </motion.p>
-      </main>
-    );
-
-  if (error)
-    return (
-      <main
-        aria-live="assertive"
-        className="min-h-screen flex flex-col items-center justify-center bg-black text-red-400 p-6"
-      >
-        <motion.p
-          className="text-lg mb-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-        >
-          Error: {error}
-        </motion.p>
-        <button
-          onClick={fetchProjects}
-          className="px-5 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white transition"
-        >
-          Retry
-        </button>
       </main>
     );
 
