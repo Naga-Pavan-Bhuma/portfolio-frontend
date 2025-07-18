@@ -27,7 +27,7 @@ const localProjects = [
     liveDemo:
       "https://www.figma.com/proto/3OUnIkdNcMMYx4z8UiBg0I/Resume-Analyzer?node-id=0%3A1",
     imageUrl:
-      "https://res.cloudinary.com/dsvroldwr/image/upload/v1749547206/Resumify.png",
+      "https://res.cloudinary.com/dsvroldwr/image/upload/v1749547206/Resumify-.png",
     createdAt: "2025-06-10T08:03:16.421+00:00",
   },
   {
@@ -41,7 +41,7 @@ const localProjects = [
     liveDemo:
       "https://www.figma.com/proto/CDi2BW5pELrTEfF84s3NJu/Hasini-Enterprises?node-id=0%3A1",
     imageUrl:
-      "https://res.cloudinary.com/dsvroldwr/image/upload/v1749546681/Hasini%20Enterprises.png",
+      "https://res.cloudinary.com/dsvroldwr/image/upload/v1749546681/Hasini%20Enterprises-.png",
     createdAt: "2025-06-10T08:14:52.324+00:00",
   },
   {
