@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
 const container = {
@@ -20,34 +20,61 @@ const item = {
 
 const invertIcons = ["Express.js"];
 
+// ✅ Frontend-only static skill data
+const localSkills = [
+  {
+    _id: "6846d3ac1cf3abf31d426caf",
+    name: "HTML5",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+  },
+  {
+    _id: "6846d4151cf3abf31d426cb1",
+    name: "CSS3",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+  },
+  {
+    _id: "6846d4251cf3abf31d426cb3",
+    name: "JavaScript",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  },
+  {
+    _id: "6846d44a1cf3abf31d426cb5",
+    name: "React",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  },
+  {
+    _id: "6846d4551cf3abf31d426cb7",
+    name: "Node.js",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  },
+  {
+    _id: "6846d46a1cf3abf31d426cb9",
+    name: "Express.js",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+  },
+  {
+    _id: "6846d47b1cf3abf31d426cbb",
+    name: "MongoDB",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+  },
+  {
+    _id: "6846d4851cf3abf31d426cbd",
+    name: "SQL",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+  },
+  {
+    _id: "6846d48e1cf3abf31d426cbf",
+    name: "UI/UX",
+    logo: "https://cdn-icons-png.flaticon.com/512/4661/4661406.png",
+  },
+  {
+    _id: "6846d4991cf3abf31d426cc1",
+    name: "Figma",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+  },
+];
+
 export default function Skills() {
-  const [skills, setSkills] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/skills`)
-      .then((res) => res.json())
-      .then((data) => {
-        const skillsArray = Array.isArray(data) ? data : data.skills || [];
-        setSkills(skillsArray);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching skills:", err);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) {
-    return (
-      <section className="min-h-screen bg-blue-100 dark:bg-black text-black dark:text-white flex items-center justify-center">
-        <p className="text-gray-600 dark:text-gray-400 text-xl">
-          Loading skills...
-        </p>
-      </section>
-    );
-  }
-
   return (
     <section
       id="skills"
@@ -62,24 +89,23 @@ export default function Skills() {
         viewport={{ once: true, amount: 0.3 }}
         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 w-full max-w-6xl place-items-center"
       >
-        {skills.map((skill, index) => (
+        {localSkills.map((skill) => (
           <motion.li
-  key={skill._id || index}
-  variants={item}
-  className="
-    group flex flex-col items-center justify-center 
-    bg-blue-50
-    border border-gray-300 
-    rounded-2xl px-6 py-6 
-    shadow-sm hover:shadow-md 
-    transition-all duration-300 hover:scale-105 
-    w-36 h-36 sm:w-40 sm:h-40
-    dark:bg-black dark:border-neutral-700 dark:shadow-lg dark:hover:shadow-indigo-500/30
-  "
->
-
+            key={skill._id}
+            variants={item}
+            className="
+              group flex flex-col items-center justify-center 
+              bg-blue-50
+              border border-gray-300 
+              rounded-2xl px-6 py-6 
+              shadow-sm hover:shadow-md 
+              transition-all duration-300 hover:scale-105 
+              w-36 h-36 sm:w-40 sm:h-40
+              dark:bg-black dark:border-neutral-700 dark:shadow-lg dark:hover:shadow-indigo-500/30
+            "
+          >
             <img
-              src={skill.logo}
+              src={skill.logo.trim()}
               alt={skill.name}
               className={`w-12 h-12 mb-3 transition-transform duration-300 group-hover:scale-110 ${
                 invertIcons.includes(skill.name)
